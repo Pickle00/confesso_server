@@ -8,10 +8,10 @@ const router = express.Router();
  *     summary: Get all users
  *     responses:
  *       200:
- *         description: Success
+ *         description: List of users
  */
 router.get('/', (req, res) => {
-  res.json([{ id: 1, name: 'Alice' }]);
+  res.json([{ id: 1, name: 'Anonymous Student' }]);
 });
 
 module.exports = router;

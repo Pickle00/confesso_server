@@ -1,14 +1,19 @@
 const express = require('express');
-const { swaggerUi, specs } = require('./config/swagger');
-const userRoutes = require('./interfaces/routes/userRoutes');
-
 const app = express();
+const { swaggerUi, swaggerSpec } = require('./config/swagger');
+const userRoutes = require('./routes/userRoutes'); // example
 
 app.use(express.json());
 
-app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(specs));
+// Swagger docs
+app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerSpec));
 
-// Mount routes
-app.use('/api/users', userRoutes);
+// Routes
+app.use('/api/users', userRoutes); // example route
 
-module.exports = app;
+// Server
+const PORT = process.env.PORT || 3000;
+app.listen(PORT, () => {
+  console.log(`Server running on http://localhost:${PORT}`);
+  console.log(`Swagger docs available at http://localhost:${PORT}/api-docs`);
+});
